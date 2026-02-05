@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 use Migrations\BaseMigration;
 
-class CreateUsers extends BaseMigration
+class CreateFavorites extends BaseMigration
 {
     /**
      * Change Method.
@@ -16,14 +16,15 @@ class CreateUsers extends BaseMigration
     public function change(): void
     {
         $this
-            ->table('users')
-            ->addColumn('email', 'string', [
+            ->table('favorites')
+            ->addColumn('user_id', 'uuid', [
                 'default' => null,
                 'null' => false,
             ])
-            ->addColumn('password', 'string', [
+            ->addColumn('bill_id', 'integer', [
                 'default' => null,
                 'null' => false,
+                'signed' => false,
             ])
             ->addColumn('created', 'datetime')
             ->addColumn('modified', 'datetime')

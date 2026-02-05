@@ -21,14 +21,14 @@ class CreateTags extends BaseMigration
                 'default' => null,
                 'null' => false,
             ])
-            ->addColumn('body', 'string', [
-                'default' => null,
-                'null' => false,
-            ])
             ->addColumn('bill_id', 'integer', [
                 'default' => null,
                 'null' => false,
                 'signed' => false,
+            ])
+            ->addColumn('body', 'string', [
+                'default' => null,
+                'null' => false,
             ])
             ->create();
     }
