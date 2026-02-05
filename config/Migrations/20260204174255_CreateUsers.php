@@ -25,6 +25,7 @@ class CreateUsers extends BaseMigration
                 'default' => null,
                 'null' => false,
             ])
+            ->addIndex('email', ['unique' => true])
             ->addColumn('created', 'datetime')
             ->addColumn('modified', 'datetime')
             ->create();
