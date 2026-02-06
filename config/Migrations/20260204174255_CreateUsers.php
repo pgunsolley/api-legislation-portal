@@ -16,13 +16,21 @@ class CreateUsers extends BaseMigration
     public function change(): void
     {
         $this
-            ->table('users')
+            ->table('users', ['id' => false, 'primary_key' => ['id']])
+            ->addColumn('id', 'uuid', [
+                'default' => null,
+                'null' => false,
+            ])
             ->addColumn('email', 'string', [
                 'default' => null,
                 'null' => false,
             ])
             ->addColumn('password', 'string', [
                 'default' => null,
+                'null' => false,
+            ])
+            ->addColumn('email_verified', 'boolean', [
+                'default' => false,
                 'null' => false,
             ])
             ->addIndex('email', ['unique' => true])

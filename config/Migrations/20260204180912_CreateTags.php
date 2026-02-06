@@ -16,10 +16,15 @@ class CreateTags extends BaseMigration
     public function change(): void
     {
         $this
-            ->table('tags')
+            ->table('tags', ['id' => false, 'primary_key' => ['id']])
+            ->addColumn('id', 'uuid', [
+                'default' => null,
+                'null' => false,
+            ])
             ->addColumn('user_id', 'uuid', [
                 'default' => null,
                 'null' => false,
+                'signed' => false,
             ])
             ->addColumn('bill_id', 'integer', [
                 'default' => null,
@@ -30,6 +35,13 @@ class CreateTags extends BaseMigration
                 'default' => null,
                 'null' => false,
             ])
+            ->addForeignKey('user_id', 'users', [
+                'delete' => 'CASCADE',
+                'update' => 'NO_ACTION',
+            ])
+            ->addIndex('bill_id')
+            ->addColumn('created', 'datetime')
+            ->addColumn('modified', 'datetime')
             ->create();
     }
 }

@@ -76,6 +76,8 @@ class UsersTable extends Table
             ->requirePresence('password', 'create')
             ->notEmptyString('password');
 
+        $validator->boolean('verified');
+
         return $validator;
     }
 
