@@ -8,10 +8,10 @@ use Cake\ORM\Entity;
 /**
  * User Entity
  *
- * @property int $id
+ * @property string $id
  * @property string $email
  * @property string $password
- * @property bool $verified
+ * @property bool $email_verified
  * @property \Cake\I18n\DateTime $created
  * @property \Cake\I18n\DateTime $modified
  *
@@ -32,6 +32,7 @@ class User extends Entity
     protected array $_accessible = [
         'email' => true,
         'password' => true,
+        'email_verified' => true,
         'created' => true,
         'modified' => true,
         'favorites' => true,

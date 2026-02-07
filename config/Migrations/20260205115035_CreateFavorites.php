@@ -31,11 +31,10 @@ class CreateFavorites extends BaseMigration
                 'null' => false,
                 'signed' => false,
             ])
-            ->addForeignKey('user_id', 'users', [
+            ->addForeignKey('user_id', 'users', 'id', [
                 'delete' => 'CASCADE',
                 'update' => 'NO_ACTION',
             ])
-            ->addIndex('user_id')
             ->addColumn('created', 'datetime')
             ->addColumn('modified', 'datetime')
             ->create();

@@ -8,10 +8,12 @@ use Cake\ORM\Entity;
 /**
  * Tag Entity
  *
- * @property int $id
+ * @property string $id
  * @property string $user_id
  * @property int $bill_id
  * @property string $body
+ * @property \Cake\I18n\DateTime $created
+ * @property \Cake\I18n\DateTime $modified
  *
  * @property \App\Model\Entity\User $user
  */
@@ -30,6 +32,8 @@ class Tag extends Entity
         'user_id' => true,
         'bill_id' => true,
         'body' => true,
+        'created' => true,
+        'modified' => true,
         'user' => true,
     ];
 }

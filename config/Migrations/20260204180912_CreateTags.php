@@ -35,11 +35,10 @@ class CreateTags extends BaseMigration
                 'default' => null,
                 'null' => false,
             ])
-            ->addForeignKey('user_id', 'users', [
+            ->addForeignKey('user_id', 'users', 'id', [
                 'delete' => 'CASCADE',
                 'update' => 'NO_ACTION',
             ])
-            ->addIndex('bill_id')
             ->addColumn('created', 'datetime')
             ->addColumn('modified', 'datetime')
             ->create();

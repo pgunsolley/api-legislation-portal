@@ -8,7 +8,7 @@ use Cake\ORM\Entity;
 /**
  * Favorite Entity
  *
- * @property int $id
+ * @property string $id
  * @property string $user_id
  * @property int $bill_id
  * @property \Cake\I18n\DateTime $created
