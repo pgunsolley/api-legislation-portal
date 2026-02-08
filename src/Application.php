@@ -16,6 +16,7 @@ declare(strict_types=1);
  */
 namespace App;
 
+use App\Service\JwtService;
 use Authentication\AuthenticationService;
 use Authentication\AuthenticationServiceInterface;
 use Authentication\AuthenticationServiceProviderInterface;
@@ -104,6 +105,7 @@ class Application extends BaseApplication implements AuthenticationServiceProvid
     {
         // Allow your Tables to be dependency injected
         //$container->delegate(new \Cake\ORM\Locator\TableContainer());
+        $container->add(JwtService::class);
     }
 
     /**

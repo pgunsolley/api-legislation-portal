@@ -14,6 +14,7 @@
         "firebase/php-jwt": "^7.0",
         "friendsofcake/crud": "^7.2",
         "mobiledetect/mobiledetectlib": "^4.8.03",
+        "paragonie/sodium_compat": "^2.5",
         "ramsey/uuid": "^4.9"
     },
     "require-dev": {
