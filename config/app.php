@@ -461,4 +461,11 @@ return [
         'errorLevel' => null,
         'fixtureStrategy' => null,
     ],
+
+    'Authentication' => [
+        'jwt' => [
+            'algorithm' => 'RS256',
+            'expiration' => time() + 60,
+        ],
+    ],
 ];

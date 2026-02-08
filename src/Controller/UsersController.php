@@ -35,7 +35,9 @@ class UsersController extends AppController
             throw new UnauthorizedException();
         }
 
-        // TODO: Return response body with signed JWT.
-        // TODO: Use a JWT service
+        $token = $jwtService->signUser($user);
+        $data = compact('token');
+        $this->viewBuilder()->setOption('serialize', 'data');
+        $this->set(compact('data'));
     }
 }

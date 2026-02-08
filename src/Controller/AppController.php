@@ -17,6 +17,7 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use Cake\Controller\Controller;
+use Cake\View\JsonView;
 
 /**
  * Application Controller
@@ -28,6 +29,8 @@ use Cake\Controller\Controller;
  */
 class AppController extends Controller
 {
+    protected array $viewClasses = [JsonView::class];
+
     /**
      * Initialization hook method.
      *
