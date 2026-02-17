@@ -4,7 +4,9 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use App\Service\JwtService;
+use Cake\Event\EventInterface;
 use Cake\Http\Exception\UnauthorizedException;
+use Cake\Mailer\MailerAwareTrait;
 use Cake\Validation\Validator;
 
 /**
@@ -15,10 +17,31 @@ use Cake\Validation\Validator;
  */
 class UsersController extends AppController
 {
+    use MailerAwareTrait;
+
     public function initialize(): void
     {
         parent::initialize();
-        $this->Authentication->allowUnauthenticated(['generateToken']);
+        $this->Authentication->allowUnauthenticated(['add', 'generateToken']);
+        $this->loadComponent('Crud.Crud', [
+            'actions' => ['Crud.Add'],
+            'listeners' => ['Crud.Api', 'Crud.ApiPagination'],
+        ]);
+    }
+
+    public function add(JwtService $jwtService)
+    {
+        $this->Crud->on('afterSave', function (EventInterface $event) {
+            $mailer = $this->getMailer('User');
+            // TODO: Define method/action on UserMailer for sending verification email
+        });
+
+        $this->Crud->execute();
+    }
+
+    public function verifyEmailToken(JwtService $jwtService)
+    {
+        // TODO: Add logic to find user using jwt, update email_verified to true, and respond with new jwt
     }
 
     public function generateToken(JwtService $jwtService)
@@ -31,7 +54,7 @@ class UsersController extends AppController
         }
 
         $user = $this->Users->findByEmail($email)->first();
-        if (empty($user) || !$user->checkPassword($password)) {
+        if (empty($user) || !$user->checkPassword($password) || !$user->email_verified) {
             throw new UnauthorizedException();
         }
 
